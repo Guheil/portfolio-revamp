@@ -14,7 +14,11 @@ export const CTASection = styled.section`
 
   @media (max-width: 768px) {
     min-height: 56vh;
-    padding: 80px 24px;
+    padding: 80px 20px;
+  }
+
+  @media (max-width: 380px) {
+    padding: 64px 16px;
   }
 `;
 
@@ -23,6 +27,7 @@ export const CTATitle = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0;
+  width: 100%;
 `;
 
 export const CTAWord = styled.div`
@@ -36,7 +41,11 @@ export const CTAWord = styled.div`
   will-change: transform, opacity, filter;
 
   @media (max-width: 600px) {
-    font-size: clamp(2rem, 13vw, 4rem);
+    font-size: clamp(1.6rem, 11vw, 4rem);
+  }
+
+  @media (max-width: 380px) {
+    font-size: clamp(1.4rem, 10vw, 3rem);
   }
 `;
 
@@ -69,7 +78,7 @@ export const CTAButtons = styled.div`
   @media (max-width: 600px) {
     flex-direction: column;
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;
   }
 `;
 

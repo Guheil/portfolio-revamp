@@ -27,7 +27,8 @@ export const HeroPortrait = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: default;
   will-change: transform, opacity, filter;
 
   img {
@@ -40,14 +41,31 @@ export const HeroPortrait = styled.div`
       theme.mode === 'dark'
         ? 'grayscale(50%) brightness(1.3)'
         : 'grayscale(60%) contrast(1.1)'};
-    transition: opacity 0.4s ease, filter 0.4s ease;
+    transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+
+  &:hover img {
+    opacity: ${({ theme }) => (theme.mode === 'dark' ? 0.7 : 0.58)};
+    filter: ${({ theme }) =>
+      theme.mode === 'dark'
+        ? 'grayscale(0%) brightness(1.1)'
+        : 'grayscale(0%) contrast(1.05)'};
+    transform: scale(1.03);
   }
 
   @media (max-width: 600px) {
     img {
       height: clamp(320px, 60vh, 560px);
+    }
+  }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    img {
+      height: clamp(180px, 52vh, 360px);
     }
   }
 `;
@@ -68,6 +86,10 @@ export const HeroBigName = styled.h1`
 
   @media (max-width: 600px) {
     font-size: clamp(3rem, 20vw, 7rem);
+  }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    font-size: clamp(2.5rem, 18vh, 6rem);
   }
 `;
 
@@ -91,6 +113,11 @@ export const HeroRole = styled.h2`
     font-size: clamp(0.85rem, 4.5vw, 1.4rem);
     margin-top: 10px;
   }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    font-size: clamp(0.7rem, 2.5vw, 1.1rem);
+    margin-top: 6px;
+  }
 `;
 
 export const HeroMeta = styled.div`
@@ -106,6 +133,11 @@ export const HeroMeta = styled.div`
     font-size: 0.7rem;
     margin-top: 18px;
   }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    font-size: 0.65rem;
+    margin-top: 8px;
+  }
 `;
 
 /* bottom bar across the viewport */
@@ -118,13 +150,20 @@ export const HeroBottom = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding: 32px 40px;
+  padding: 32px max(40px, calc((100% - 1160px) / 2));
 
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
     padding: 24px 24px;
     gap: 20px;
+  }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    flex-direction: row;
+    align-items: center;
+    padding: 12px max(20px, calc((100% - 1160px) / 2));
+    gap: 0;
   }
 `;
 
@@ -163,6 +202,10 @@ export const HeroBio = styled.p`
   @media (max-width: 768px) {
     max-width: 100%;
   }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    display: none;
+  }
 `;
 
 export const HeroCTA = styled.div`
@@ -176,6 +219,12 @@ export const HeroCTA = styled.div`
     flex-direction: column;
     align-items: stretch;
     width: 100%;
+  }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
   }
 `;
 

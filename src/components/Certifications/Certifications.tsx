@@ -15,6 +15,7 @@ import {
   CertInfo,
   CertName,
   CertIssuer,
+  CertSummary,
   CertLink,
   CertDate,
   CertSkills,
@@ -25,52 +26,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 const certifications: CertItem[] = [
   {
-    name: 'DICT Diagnostics Exam Passer',
-    issuer: 'Department of Information and Communications Technology - Philippines',
-    date: 'Issued Jun 2025',
-    skills: ['Object-Oriented Programming (OOP)', 'Problem Solving'],
+    name: 'DICT ICT Proficiency Diagnostic Exam — Passer',
+    issuer: 'Department of Information and Communications Technology (DICT)',
+    summary:
+      'Passed the foundational evaluation in programming logic, data structures, OOP, networking, and database systems, qualifying toward the DICT ICT Proficiency Certification and Civil Service EDP Specialist Eligibility.',
+    date: 'Passed Mar 2025',
+    skills: ['Programming Logic', 'Data Structures', 'OOP', 'Networking', 'Databases'],
   },
   {
-    name: 'IBM Front-End Developer Professional Certificate',
-    issuer: 'IBM (Coursera)',
-    date: 'In Progress - Target 2026',
-    skills: ['HTML', 'CSS', 'JavaScript', 'React'],
-    url: 'https://www.coursera.org/professional-certificates/ibm-frontend-developer',
+    name: 'SILLAG Provincial Startup Summit & Hackathon — Regional Qualifier',
+    issuer: 'SILLAG Region 1 • La Union Leg',
+    summary:
+      'Co-developed BantAI, recognized as one of the top two student innovations at the La Union leg of SILLAG Region 1 2024, and advanced to represent the province in the regional finals.',
+    date: 'Qualified May 2024',
+    skills: ['Hackathon', 'Product Ideation', 'Startup Pitching', 'Team Collaboration'],
   },
   {
-    name: 'Meta Front-End Developer Professional Certificate',
-    issuer: 'Meta (Coursera)',
-    date: 'In Progress - Target 2026',
-    skills: ['Responsive Web Design', 'JavaScript', 'React', 'Version Control'],
-    url: 'https://www.coursera.org/professional-certificates/meta-front-end-developer',
-  },
-  {
-    name: 'Microsoft Front-End Developer Professional Certificate',
-    issuer: 'Microsoft (Coursera)',
-    date: 'In Progress - Target 2026',
-    skills: ['Frontend Architecture', 'JavaScript', 'Accessibility', 'GitHub'],
-    url: 'https://www.coursera.org/professional-certificates/microsoft-front-end-developer',
-  },
-  {
-    name: 'Google UX Design Professional Certificate',
-    issuer: 'Google (Coursera)',
-    date: 'In Progress - Target 2026',
-    skills: ['UX Research', 'Wireframing', 'Figma', 'Prototyping'],
-    url: 'https://www.coursera.org/professional-certificates/google-ux-design',
-  },
-  {
-    name: 'AWS Certified Cloud Practitioner (CLF-C02)',
-    issuer: 'Amazon Web Services',
-    date: 'In Progress - Target 2026',
-    skills: ['Cloud Fundamentals', 'AWS Services', 'Security Basics'],
-    url: 'https://aws.amazon.com/certification/certified-cloud-practitioner/',
-  },
-  {
-    name: 'Microsoft Certified: Azure Fundamentals (AZ-900)',
-    issuer: 'Microsoft Learn',
-    date: 'In Progress - Target 2026',
-    skills: ['Cloud Concepts', 'Azure Services', 'Governance and Compliance'],
-    url: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/',
+    name: 'Natural Language Processing Seminar — Attendee',
+    issuer: 'National University & Bicol University at Lorma Colleges',
+    summary:
+      'Completed a two-day intensive NLP seminar covering language modeling, text preprocessing, and applied natural language processing tools.',
+    date: 'Attended Oct 2023',
+    skills: ['Language Modeling', 'Text Preprocessing', 'NLP Tools'],
   },
 ];
 
@@ -138,7 +115,7 @@ const Certifications: React.FC = () => {
       <Container>
         <IntroBlock>
           <SectionLabel data-cert-heading>Credentials</SectionLabel>
-          <SectionTitle data-cert-heading>Certifications</SectionTitle>
+          <SectionTitle data-cert-heading>Certifications & Activities</SectionTitle>
         </IntroBlock>
 
         <ContentBlock ref={listRef}>
@@ -147,6 +124,7 @@ const Certifications: React.FC = () => {
               <CertInfo>
                 <CertName>{c.name}</CertName>
                 <CertIssuer>{c.issuer}</CertIssuer>
+                {c.summary && <CertSummary>{c.summary}</CertSummary>}
                 {c.url && (
                   <CertLink href={c.url} target="_blank" rel="noreferrer">
                     Program details

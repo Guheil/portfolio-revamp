@@ -32,44 +32,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects: ProjectItem[] = [
   {
+    name: 'Kmaris Immigration App',
+    description:
+      'Designed and deployed a full-stack immigration platform that digitized the end-to-end U.S. visa workflow for Kmaris, enabling real-time application tracking across 150+ client cases with a fully paperless system.',
+    period: 'BYND Digital • Jul 2025 - Present',
+    skills: ['Next.js', 'MongoDB', 'Workflow Automation', 'Application Tracking'],
+  },
+  {
+    name: 'The Oracle PTRC Appointment App',
+    description:
+      'Architected a real-time scheduling platform for a physical therapy clinic, replacing Google Sheets with a live booking calendar that manages 30+ daily appointments and eliminates double-bookings.',
+    period: 'BYND Digital • Jul 2025 - Present',
+    skills: ['Next.js', 'SQL', 'Booking Dashboard', 'Scheduling System'],
+  },
+  {
+    name: 'APP Construction Supplies Inventory System',
+    description:
+      'Delivered a real-time inventory management system for a local construction supplies business, tracking 300+ SKUs with automated low-stock alerts and analytics dashboards while replacing manual inventory workflows.',
+    period: 'BYND Digital • Jul 2025 - Present',
+    skills: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Inventory Analytics'],
+  },
+  {
     name: 'Produkto Elyukal',
     description:
-      'A mobile application supporting local farmers and producers, helping them showcase and sell products directly to consumers while bridging the gap between farm and table.',
-    period: 'Jan 2025 - May 2025',
-    skills: ['FastAPI', 'UI/UX', 'React Native', 'Firebase', 'Python'],
-    repo: 'https://github.com/guheil/produkto-elyukal',
+      'Built an augmented reality mobile application that showcases local products in La Union, featuring a Mapbox-powered shop navigator that helps tourists and residents explore regional goods directly from their phones.',
+    period: 'Academic Project • 2025',
+    skills: ['React Native', 'Supabase', 'FastAPI', 'ViroReact', 'Mapbox'],
   },
   {
-    name: 'BYND Digital Marketing',
+    name: 'DOST HR Website',
     description:
-      'Building responsive, SEO-optimized websites at BYND Digital Marketing Services using WordPress, React.js, and modern web technologies for various clients.',
-    period: 'Sep 2025 - Present',
-    skills: ['WordPress', 'React.js', 'JavaScript', 'CSS', 'SEO'],
-  },
-  {
-    name: 'LunaStay Booking Dashboard',
-    description:
-      'A reservation dashboard for small lodging teams with room status tracking, booking analytics, and quick check-in/check-out actions.',
-    period: 'Nov 2025 - Feb 2026',
-    skills: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'Chart.js'],
-    demo: 'https://lunastay-booking-demo.vercel.app',
-    repo: 'https://github.com/guheil/lunastay-booking-dashboard',
-  },
-  {
-    name: 'DevTrack Kanban Suite',
-    description:
-      'A collaborative issue board built for lightweight sprint planning, drag-and-drop task flow, and release progress tracking.',
-    period: 'Aug 2025 - Oct 2025',
-    skills: ['React', 'Firebase', 'DnD Kit', 'Tailwind CSS'],
-    repo: 'https://github.com/guheil/devtrack-kanban-suite',
-  },
-  {
-    name: 'VistaCraft Portfolio Builder',
-    description:
-      'A visual landing page builder for creators with reusable section blocks, theme presets, and instant mobile preview.',
-    period: 'Mar 2026 - Present',
-    skills: ['Next.js', 'Framer Motion', 'Styled Components', 'Vercel'],
-    demo: 'https://vistacraft-portfolio-demo.vercel.app',
+      'Created a government job listing portal that lets applicants browse openings, upload documents, track application status, and receive automated email notifications for each stage of the process.',
+    period: 'DOST Region 1 • Jun 2024 - Aug 2024',
+    skills: ['HTML5', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
   },
 ];
 

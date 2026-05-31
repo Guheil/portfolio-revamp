@@ -92,6 +92,15 @@ export const CertIssuer = styled.div`
   color: ${({ theme }) => theme.textSecondary};
 `;
 
+export const CertSummary = styled.p`
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 0.8rem;
+  color: ${({ theme }) => theme.textSecondary};
+  line-height: 1.65;
+  margin-top: 10px;
+  max-width: 620px;
+`;
+
 export const CertLink = styled.a`
   display: inline-block;
   margin-top: 6px;

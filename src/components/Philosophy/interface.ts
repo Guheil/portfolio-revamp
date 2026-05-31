@@ -3,7 +3,7 @@ export interface PhilosophyProps {
 }
 
 export interface PhilosophyQuote {
-  topic: 'Work' | 'Life' | 'Philosophy';
+  topic: string;
   text: string;
   speaker: string;
 }

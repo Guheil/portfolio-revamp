@@ -14,7 +14,6 @@ import {
   RevealLayer,
   RevealHalfLeft,
   RevealHalfRight,
-  RevealSeam,
 } from './elements';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -26,9 +25,9 @@ const quotes: PhilosophyQuote[] = [
     speaker: 'Steve Jobs',
   },
   {
-    topic: 'Life',
-    text: "Your time is limited, so do not waste it living someone else's life.",
-    speaker: 'Steve Jobs',
+    topic: 'Simplicity',
+    text: 'Simple things should be simple, complex things should be possible.',
+    speaker: 'Alan Kay',
   },
   {
     topic: 'Philosophy',
@@ -42,7 +41,6 @@ const Philosophy: React.FC = () => {
   const stageRef = useRef<HTMLDivElement>(null);
   const leftRevealRef = useRef<HTMLDivElement>(null);
   const rightRevealRef = useRef<HTMLDivElement>(null);
-  const seamRef = useRef<HTMLDivElement>(null);
   const stackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -50,9 +48,8 @@ const Philosophy: React.FC = () => {
     const stage = stageRef.current;
     const leftReveal = leftRevealRef.current;
     const rightReveal = rightRevealRef.current;
-    const seam = seamRef.current;
     const stack = stackRef.current;
-    if (!section || !stage || !leftReveal || !rightReveal || !seam || !stack) return;
+    if (!section || !stage || !leftReveal || !rightReveal || !stack) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
@@ -74,26 +71,6 @@ const Philosophy: React.FC = () => {
           autoAlpha: 0,
           filter: 'blur(4px)',
           duration: 1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 90%',
-            end: 'top 40%',
-            scrub: 1.1,
-          },
-        }
-      );
-
-      gsap.fromTo(
-        seam,
-        {
-          autoAlpha: 0.58,
-          filter: 'blur(0px)',
-        },
-        {
-          autoAlpha: 0,
-          filter: 'blur(6px)',
-          duration: 0.95,
           ease: 'none',
           scrollTrigger: {
             trigger: section,
@@ -207,7 +184,6 @@ const Philosophy: React.FC = () => {
         <RevealLayer aria-hidden="true">
           <RevealHalfLeft ref={leftRevealRef} />
           <RevealHalfRight ref={rightRevealRef} />
-          <RevealSeam ref={seamRef} />
         </RevealLayer>
       </Stage>
     </Section>

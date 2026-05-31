@@ -91,15 +91,3 @@ export const RevealHalfRight = styled(RevealHalf)`
   transform: translateX(102%);
   transform-origin: left center;
 `;
-
-export const RevealSeam = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1px;
-  height: min(38vh, 320px);
-  transform: translate(-50%, -50%);
-  background: ${({ theme }) => theme.border};
-  opacity: 0;
-  will-change: opacity, filter;
-`;

@@ -32,18 +32,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects: ProjectItem[] = [
   {
-    name: 'Kmaris Immigration App',
-    description:
-      'Designed and deployed a full-stack immigration platform that digitized the end-to-end U.S. visa workflow for Kmaris, enabling real-time application tracking across 150+ client cases with a fully paperless system.',
-    period: 'BYND Digital • Jul 2025 - Present',
-    skills: ['Next.js', 'MongoDB', 'Workflow Automation', 'Application Tracking'],
-  },
-  {
     name: 'The Oracle PTRC Appointment App',
     description:
       'Architected a real-time scheduling platform for a physical therapy clinic, replacing Google Sheets with a live booking calendar that manages 30+ daily appointments and eliminates double-bookings.',
     period: 'BYND Digital • Jul 2025 - Present',
     skills: ['Next.js', 'SQL', 'Booking Dashboard', 'Scheduling System'],
+  },
+  {
+    name: 'Kmaris Immigration App',
+    description:
+      'Designed and deployed a full-stack immigration platform that digitized the end-to-end U.S. visa workflow for Kmaris, enabling real-time application tracking across 150+ client cases with a fully paperless system.',
+    period: 'BYND Digital • Jul 2025 - Present',
+    skills: ['Next.js', 'MongoDB', 'Workflow Automation', 'Application Tracking'],
   },
   {
     name: 'APP Construction Supplies Inventory System',
@@ -60,11 +60,12 @@ const projects: ProjectItem[] = [
     skills: ['React Native', 'Supabase', 'FastAPI', 'ViroReact', 'Mapbox'],
   },
   {
-    name: 'DOST HR Website',
+    name: 'Civitas AU',
     description:
-      'Created a government job listing portal that lets applicants browse openings, upload documents, track application status, and receive automated email notifications for each stage of the process.',
-    period: 'DOST Region 1 • Jun 2024 - Aug 2024',
-    skills: ['HTML5', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
+      'Built and customized the Civitas AU website for BYND Digital on Odoo, shaping a polished company presence for a Queensland-based investment and development group across real estate, healthcare, and community infrastructure.',
+    period: 'BYND Digital • Jul 2025 - Present',
+    skills: ['Odoo', 'Website Customization', 'CMS', 'Responsive Web Design'],
+    demo: 'https://www.civitas.au/',
   },
 ];
 

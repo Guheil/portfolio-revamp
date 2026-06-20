@@ -39,11 +39,12 @@ const projects: ProjectItem[] = [
     skills: ['Next.js', 'SQL', 'Booking Dashboard', 'Scheduling System'],
   },
   {
-    name: 'Kmaris Immigration App',
+    name: 'Sun Island Bali Website',
     description:
-      'Designed and deployed a full-stack immigration platform that digitized the end-to-end U.S. visa workflow for Kmaris, enabling real-time application tracking across 150+ client cases with a fully paperless system.',
-    period: 'BYND Digital • Jul 2025 - Present',
-    skills: ['Next.js', 'MongoDB', 'Workflow Automation', 'Application Tracking'],
+      'Managed and redesigned the Sun Island Bali website, developed custom plugins, and integrated an AI chatbot to support visitor inquiries and site operations.',
+    period: 'Live Website • Ongoing',
+    skills: ['Custom Plugins', 'AI Chatbot', 'Website Redesign', 'Website Management'],
+    demo: 'https://sunislandbali.com/',
   },
   {
     name: 'APP Construction Supplies Inventory System',

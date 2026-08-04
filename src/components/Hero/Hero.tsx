@@ -266,8 +266,8 @@ const Hero: React.FC<HeroProps> = ({ animate, onIntroComplete }) => {
 
         <HeroCTA>
           <CTABtnOutline
-            href="/Xavier_Gael_CV.pdf"
-            download="Xavier_Gael_San_Juan_Resume.pdf"
+            href="/GAEL-CV.pdf"
+            download="GAEL-CV.pdf"
           >
             <DownloadRoundedIcon sx={{ fontSize: 16 }} />
             Download Resume

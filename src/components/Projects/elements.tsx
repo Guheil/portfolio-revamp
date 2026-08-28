@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 export const Section = styled.section`
@@ -218,6 +219,30 @@ export const ProjectLink = styled.a`
 
   svg {
     font-size: 14px !important;
+  }
+`;
+
+export const ProjectCaseStudyLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.text};
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 5px 14px;
+  border: 1px solid ${({ theme }) => theme.text};
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    color: ${({ theme }) => theme.bg};
+    background: ${({ theme }) => theme.text};
+    transform: translateY(-1px);
   }
 `;
 

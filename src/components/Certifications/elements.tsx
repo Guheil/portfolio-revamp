@@ -78,7 +78,7 @@ export const CertInfo = styled.div`
   flex: 1;
 `;
 
-export const CertName = styled.h4`
+export const CertName = styled.h3`
   font-family: ${({ theme }) => theme.fonts.display};
   font-size: 1rem;
   font-weight: 600;

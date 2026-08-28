@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { useThemeMode } from '@/lib/providers';
@@ -24,12 +25,13 @@ import {
 } from './elements';
 
 const links = [
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Certifications', href: '#certifications' },
+  { label: 'Skills', href: '/#skills' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Certifications', href: '/#certifications' },
 ];
 
 const Navigation: React.FC<NavigationProps> = ({ visible }) => {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { mode, toggle } = useThemeMode();
@@ -40,34 +42,80 @@ const Navigation: React.FC<NavigationProps> = ({ visible }) => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* Lock body scroll when mobile menu is open */
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [mobileOpen]);
 
-  const handleLinkClick = useCallback((href: string) => {
-    setMobileOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: 'smooth' });
-  }, []);
+  const handleLinkClick = useCallback(
+    (href: string, event?: React.MouseEvent<HTMLAnchorElement>) => {
+      setMobileOpen(false);
+
+      const isHomeRoute = pathname === '/';
+      const hash = href.includes('#') ? `#${href.split('#')[1]}` : '';
+      const isHomeAnchor = isHomeRoute && Boolean(hash);
+      const isHomeLogo = isHomeRoute && href === '/';
+
+      if (!isHomeAnchor && !isHomeLogo) {
+        return;
+      }
+
+      event?.preventDefault();
+
+      if (isHomeLogo) {
+        window.scrollTo({
+          top: 0,
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            ? 'auto'
+            : 'smooth',
+        });
+        window.history.replaceState(null, '', '/');
+        return;
+      }
+
+      const el = document.querySelector(hash);
+      if (!el) return;
+
+      const prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+      el.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        block: 'start',
+      });
+
+      window.history.replaceState(null, '', hash);
+    },
+    [pathname]
+  );
 
   return (
     <>
-      <NavWrapper $visible={visible} $scrolled={scrolled}>
+      <NavWrapper
+        $visible={visible}
+        $scrolled={scrolled}
+        aria-label="Primary navigation"
+      >
         <NavInner>
-          <Logo onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <Logo href="/" onClick={(event) => handleLinkClick('/', event)} aria-label="Go to homepage">
             Gael.
           </Logo>
           <NavLinks>
-            {links.map((l) => (
-              <NavLinkItem key={l.href} onClick={() => handleLinkClick(l.href)}>
-                {l.label}
+            {links.map((link) => (
+              <NavLinkItem
+                key={link.href}
+                href={link.href}
+                onClick={(event) => handleLinkClick(link.href, event)}
+              >
+                {link.label}
               </NavLinkItem>
             ))}
           </NavLinks>
           <NavRight>
-            <ThemeToggle onClick={(e) => toggle(e)} aria-label="Toggle theme">
+            <ThemeToggle onClick={(event) => toggle(event)} aria-label="Toggle theme">
               {mode === 'dark' ? (
                 <LightModeOutlinedIcon sx={{ fontSize: 18 }} />
               ) : (
@@ -78,6 +126,8 @@ const Navigation: React.FC<NavigationProps> = ({ visible }) => {
               $open={mobileOpen}
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation"
             >
               <BurgerLine $open={mobileOpen} $index={0} />
               <BurgerLine $open={mobileOpen} $index={1} />
@@ -87,12 +137,16 @@ const Navigation: React.FC<NavigationProps> = ({ visible }) => {
         </NavInner>
       </NavWrapper>
       <Backdrop $open={mobileOpen} onClick={() => setMobileOpen(false)} />
-      <MobileMenu $open={mobileOpen}>
-        {links.map((l, i) => (
-          <MobileLinkRow key={l.href} $open={mobileOpen} $index={i}>
-            <MobileLinkNumber>{String(i + 1).padStart(2, '0')}</MobileLinkNumber>
-            <MobileLink onClick={() => handleLinkClick(l.href)}>
-              {l.label}
+      <MobileMenu id="mobile-navigation" $open={mobileOpen} aria-hidden={!mobileOpen}>
+        {links.map((link, index) => (
+          <MobileLinkRow key={link.href} $open={mobileOpen} $index={index}>
+            <MobileLinkNumber>{String(index + 1).padStart(2, '0')}</MobileLinkNumber>
+            <MobileLink
+              href={link.href}
+              onClick={(event) => handleLinkClick(link.href, event)}
+              tabIndex={mobileOpen ? 0 : -1}
+            >
+              {link.label}
             </MobileLink>
           </MobileLinkRow>
         ))}

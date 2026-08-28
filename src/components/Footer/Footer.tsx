@@ -12,10 +12,22 @@ const Footer: React.FC = () => (
           href="https://www.linkedin.com/in/xavier-gael-san-juan-823b43286/"
           target="_blank"
           rel="noopener noreferrer"
+          data-analytics-event="profile_click"
+          data-analytics-label="LinkedIn footer"
+          data-analytics-type="profile"
+          data-analytics-destination="linkedin.com"
         >
           LinkedIn
         </FooterLink>
-        <FooterLink href="https://github.com/guheil" target="_blank" rel="noopener noreferrer">
+        <FooterLink
+          href="https://github.com/guheil"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics-event="profile_click"
+          data-analytics-label="GitHub footer"
+          data-analytics-type="profile"
+          data-analytics-destination="github.com/guheil"
+        >
           GitHub
         </FooterLink>
       </FooterLinks>

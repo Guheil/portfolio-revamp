@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LaunchIcon from '@mui/icons-material/Launch';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { ProjectItem } from './interface';
+import { projects } from '@/data/projects';
 import {
   Section,
   Container,
@@ -26,49 +26,10 @@ import {
   ProjectLinks,
   ProjectLink,
   ProjectRepoLink,
+  ProjectCaseStudyLink,
 } from './elements';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const projects: ProjectItem[] = [
-  {
-    name: 'The Oracle PTRC Appointment App',
-    description:
-      'Architected a real-time scheduling platform for a physical therapy clinic, replacing Google Sheets with a live booking calendar that manages 30+ daily appointments and eliminates double-bookings.',
-    period: 'BYND Digital • Jul 2025 - Present',
-    skills: ['Next.js', 'SQL', 'Booking Dashboard', 'Scheduling System'],
-  },
-  {
-    name: 'Sun Island Bali Website',
-    description:
-      'Managed and redesigned the Sun Island Bali website, developed custom plugins, and integrated an AI chatbot to support visitor inquiries and site operations.',
-    period: 'Live Website • Ongoing',
-    skills: ['Custom Plugins', 'AI Chatbot', 'Website Redesign', 'Website Management'],
-    demo: 'https://sunislandbali.com/',
-  },
-  {
-    name: 'APP Construction Supplies Inventory System',
-    description:
-      'Delivered a real-time inventory management system for a local construction supplies business, tracking 300+ SKUs with automated low-stock alerts and analytics dashboards while replacing manual inventory workflows.',
-    period: 'BYND Digital • Jul 2025 - Present',
-    skills: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Inventory Analytics'],
-  },
-  {
-    name: 'Produkto Elyukal',
-    description:
-      'Built an augmented reality mobile application that showcases local products in La Union, featuring a Mapbox-powered shop navigator that helps tourists and residents explore regional goods directly from their phones.',
-    period: 'Academic Project • 2025',
-    skills: ['React Native', 'Supabase', 'FastAPI', 'ViroReact', 'Mapbox'],
-  },
-  {
-    name: 'Civitas AU',
-    description:
-      'Built and customized the Civitas AU website for BYND Digital on Odoo, shaping a polished company presence for a Queensland-based investment and development group across real estate, healthcare, and community infrastructure.',
-    period: 'BYND Digital • Jul 2025 - Present',
-    skills: ['Odoo', 'Website Customization', 'CMS', 'Responsive Web Design'],
-    demo: 'https://www.civitas.au/',
-  },
-];
 
 const Projects: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -164,7 +125,7 @@ const Projects: React.FC = () => {
 
         <ContentBlock ref={listRef}>
           {projects.map((p, i) => (
-            <React.Fragment key={i}>
+            <React.Fragment key={p.slug}>
               <Divider data-line />
               <ProjectRow data-row>
                 <ProjectIndex data-reveal>
@@ -181,13 +142,25 @@ const Projects: React.FC = () => {
                       <SkillTag key={s}>{s}</SkillTag>
                     ))}
                   </SkillTags>
-                  {(p.demo || p.repo) && (
-                    <ProjectLinks data-reveal>
+                  <ProjectLinks data-reveal>
+                    <ProjectCaseStudyLink
+                      href={`/projects/${p.slug}`}
+                      data-analytics-event="case_study_open"
+                      data-analytics-label={p.shortName}
+                      data-analytics-type="case-study"
+                      data-analytics-destination={`/projects/${p.slug}`}
+                    >
+                      View Case Study
+                    </ProjectCaseStudyLink>
                       {p.demo && (
                         <ProjectLink
                           href={p.demo}
                           target="_blank"
                           rel="noopener noreferrer"
+                          data-analytics-event="project_external_click"
+                          data-analytics-label={p.shortName}
+                          data-analytics-type="live-demo"
+                          data-analytics-destination={p.demo}
                         >
                           <LaunchIcon /> Live Demo
                         </ProjectLink>
@@ -197,12 +170,15 @@ const Projects: React.FC = () => {
                           href={p.repo}
                           target="_blank"
                           rel="noopener noreferrer"
+                          data-analytics-event="project_external_click"
+                          data-analytics-label={p.shortName}
+                          data-analytics-type="repository"
+                          data-analytics-destination={p.repo}
                         >
                           <GitHubIcon /> Repository
                         </ProjectRepoLink>
                       )}
                     </ProjectLinks>
-                  )}
                 </ProjectContent>
               </ProjectRow>
             </React.Fragment>

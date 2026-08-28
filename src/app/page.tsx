@@ -17,6 +17,15 @@ export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    if (prefersReducedMotion) {
+      setIntroComplete(true);
+      return;
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -39,23 +48,40 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
     const lenis = lenisRef.current;
-    if (!lenis) return;
 
     if (!introComplete) {
-      lenis.stop();
-      document.documentElement.style.overflow = 'hidden';
-      document.body.style.overflow = 'hidden';
-      return;
+      lenis?.stop();
+      root.style.overflow = 'hidden';
+      body.style.overflow = 'hidden';
+
+      // Fail-safe: never leave the portfolio locked if an intro animation fails.
+      const unlockTimer = window.setTimeout(() => {
+        setIntroComplete(true);
+      }, 5000);
+
+      return () => {
+        window.clearTimeout(unlockTimer);
+        root.style.overflow = '';
+        body.style.overflow = '';
+      };
     }
 
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
-    lenis.start();
+    root.style.overflow = '';
+    body.style.overflow = '';
+    lenis?.start();
 
-    requestAnimationFrame(() => {
+    const refreshId = requestAnimationFrame(() => {
       ScrollTrigger.refresh();
     });
+
+    return () => {
+      cancelAnimationFrame(refreshId);
+      root.style.overflow = '';
+      body.style.overflow = '';
+    };
   }, [introComplete]);
 
   return (
@@ -71,8 +97,8 @@ export default function Home() {
         <Certifications />
         <Philosophy />
         <CTA />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

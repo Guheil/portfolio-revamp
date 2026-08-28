@@ -93,6 +93,10 @@ const CTA: React.FC = () => {
           href="https://www.linkedin.com/in/xavier-gael-san-juan-823b43286/"
           target="_blank"
           rel="noopener noreferrer"
+          data-analytics-event="profile_click"
+          data-analytics-label="LinkedIn CTA"
+          data-analytics-type="profile"
+          data-analytics-destination="linkedin.com"
         >
           <LinkedInIcon sx={{ fontSize: 18 }} />
           LinkedIn
@@ -101,6 +105,10 @@ const CTA: React.FC = () => {
           href="https://github.com/guheil"
           target="_blank"
           rel="noopener noreferrer"
+          data-analytics-event="profile_click"
+          data-analytics-label="GitHub CTA"
+          data-analytics-type="profile"
+          data-analytics-destination="github.com/guheil"
         >
           <GitHubIcon sx={{ fontSize: 18 }} />
           GitHub

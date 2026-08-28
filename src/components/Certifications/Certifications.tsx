@@ -26,7 +26,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const certifications: CertItem[] = [
   {
-    name: 'DICT ICT Proficiency Diagnostic Exam — Passer',
+    name: 'DICT ICT Proficiency Diagnostic Exam | Passer',
     issuer: 'Department of Information and Communications Technology (DICT)',
     summary:
       'Passed the foundational evaluation in programming logic, data structures, OOP, networking, and database systems, qualifying toward the DICT ICT Proficiency Certification and Civil Service EDP Specialist Eligibility.',
@@ -34,7 +34,7 @@ const certifications: CertItem[] = [
     skills: ['Programming Logic', 'Data Structures', 'OOP', 'Networking', 'Databases'],
   },
   {
-    name: 'SILLAG Provincial Startup Summit & Hackathon — Regional Qualifier',
+    name: 'SILLAG Provincial Startup Summit & Hackathon | Regional Qualifier',
     issuer: 'SILLAG Region 1 • La Union Leg',
     summary:
       'Co-developed BantAI, recognized as one of the top two student innovations at the La Union leg of SILLAG Region 1 2024, and advanced to represent the province in the regional finals.',
@@ -42,7 +42,7 @@ const certifications: CertItem[] = [
     skills: ['Hackathon', 'Product Ideation', 'Startup Pitching', 'Team Collaboration'],
   },
   {
-    name: 'Natural Language Processing Seminar — Attendee',
+    name: 'Natural Language Processing Seminar | Attendee',
     issuer: 'National University & Bicol University at Lorma Colleges',
     summary:
       'Completed a two-day intensive NLP seminar covering language modeling, text preprocessing, and applied natural language processing tools.',

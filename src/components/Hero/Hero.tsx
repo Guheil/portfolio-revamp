@@ -110,6 +110,25 @@ const Hero: React.FC<HeroProps> = ({ animate, onIntroComplete }) => {
 
   /* ─── Phase 1: GAEL is the loader — runs once on mount ─── */
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    if (prefersReducedMotion) {
+      gsap.set(
+        [
+          nameRef.current,
+          portraitRef.current,
+          roleRef.current,
+          metaRef.current,
+          bottomRef.current,
+        ],
+        { opacity: 1, clearProps: 'filter,transform' }
+      );
+      onIntroCompleteRef.current?.();
+      return;
+    }
+
     const tl = gsap.timeline({ delay: 0.1 });
 
     /* GAEL: blur-to-clear — the name itself is the loading state */
@@ -231,7 +250,7 @@ const Hero: React.FC<HeroProps> = ({ animate, onIntroComplete }) => {
   }, [animate]);
 
   return (
-    <HeroSection ref={sectionRef}>
+    <HeroSection id="top" ref={sectionRef}>
       <HeroCenter>
         <HeroPortrait ref={portraitRef} style={{ opacity: 0 }}>
           <Image
@@ -240,11 +259,16 @@ const Hero: React.FC<HeroProps> = ({ animate, onIntroComplete }) => {
             width={500}
             height={620}
             priority
+            sizes="(max-width: 768px) 72vw, 500px"
             draggable={false}
           />
         </HeroPortrait>
-        <HeroBigName ref={nameRef} style={{ opacity: 0 }}>
-          <HeroNameTilt ref={tiltRef}>GAEL</HeroNameTilt>
+        <HeroBigName
+          ref={nameRef}
+          style={{ opacity: 0 }}
+          aria-label="Xavier Gael San Juan"
+        >
+          <HeroNameTilt ref={tiltRef} aria-hidden="true">GAEL</HeroNameTilt>
         </HeroBigName>
         <HeroRole ref={roleRef} style={{ opacity: 0 }}>Front-End Developer</HeroRole>
         <HeroMeta ref={metaRef} style={{ opacity: 0 }}>
@@ -268,6 +292,10 @@ const Hero: React.FC<HeroProps> = ({ animate, onIntroComplete }) => {
           <CTABtnOutline
             href="/GAEL-CV.pdf"
             download="GAEL-CV.pdf"
+            data-analytics-event="resume_download"
+            data-analytics-label="GAEL CV"
+            data-analytics-type="resume"
+            data-analytics-destination="/GAEL-CV.pdf"
           >
             <DownloadRoundedIcon sx={{ fontSize: 16 }} />
             Download Resume
@@ -276,6 +304,10 @@ const Hero: React.FC<HeroProps> = ({ animate, onIntroComplete }) => {
             href="https://github.com/guheil"
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-event="profile_click"
+            data-analytics-label="GitHub"
+            data-analytics-type="profile"
+            data-analytics-destination="github.com/guheil"
           >
             <GitHubIcon sx={{ fontSize: 16 }} />
             GitHub
@@ -284,6 +316,10 @@ const Hero: React.FC<HeroProps> = ({ animate, onIntroComplete }) => {
             href="https://www.linkedin.com/in/xavier-gael-san-juan-823b43286/"
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-event="profile_click"
+            data-analytics-label="LinkedIn"
+            data-analytics-type="profile"
+            data-analytics-destination="linkedin.com"
           >
             <LinkedInIcon sx={{ fontSize: 16 }} />
             LinkedIn
